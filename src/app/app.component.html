@@ -1,3 +1,16 @@
-<h1>
-  {{title}}
-</h1>
+<div class="row">
+  <div class="col text-center stopwatch-time">
+    <div class="display-1">{{ timeInMillis | formatAsStopwatchPipe}}</div>
+  </div>
+</div>
+<div class="row">
+  <div *ngIf="!stopwatchIsStarted" class="col">
+    <button type="button" class="btn btn-primary btn-block" (click)="startStopwatch()">Start</button>
+  </div>
+  <div *ngIf="stopwatchIsStarted" class="col">
+    <button type="button" class="btn btn-danger btn-block" (click)="stopStopwatch()">Stop</button>
+  </div>
+  <div class="col">
+    <button type="button" class="btn btn-success btn-block" (click)="clearStopwatch()">Clear</button>
+  </div>
+</div>
