@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Stopwatch} from './utils/stopwatch';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,10 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   totalTime: number = 0;
-  intervalTime: number = 0;
   interval: any;
   stopwatchIsStarted: boolean = false;
-  startTime: number;
-  laps: Array<number> = [];
+  stopwatch: Stopwatch = new Stopwatch();
+  laps: Array<number>;
 
   constructor() {
   }
@@ -28,27 +28,28 @@ export class AppComponent {
   onStartClicked(): void {
     console.log('Starting stopwatch');
     this.stopwatchIsStarted = true;
-    this.startTime = new Date().getTime();
+    this.stopwatch.start();
     this.interval = setInterval(() => {
-      this.totalTime = this.intervalTime + (new Date().getTime() - this.startTime);
+      this.totalTime = this.stopwatch.getTime();
     }, 100);
   }
 
   onStopClicked(): void {
-    clearInterval(this.interval);
-    this.intervalTime += new Date().getTime() - this.startTime;
     console.log('Stopping stopwatch');
+    clearInterval(this.interval);
     this.stopwatchIsStarted = false;
+    this.stopwatch.stop();
   }
 
   onResetClicked(): void {
-    console.log('Clearing stopwatch');
+    console.log('Resetting stopwatch');
     this.onStopClicked();
     this.resetValues();
+    this.stopwatch.reset();
   }
 
   onLapClicked(): void {
-    this.laps.push(this.totalTime);
+    this.laps = this.stopwatch.lap();
     console.log('Laps are: ', this.laps);
   }
 }
