@@ -1,16 +1,24 @@
 <div class="row">
   <div class="col text-center">
-    <h1 id="stopwatch-time" class="stopwatch-time">{{ timeInMillis | formatAsStopwatchPipe}}</h1>
+    <h1 id="stopwatch-time" class="stopwatch-time">{{ totalTime | formatAsStopwatchPipe}}</h1>
   </div>
 </div>
 <div class="row">
   <div *ngIf="!stopwatchIsStarted" class="col">
-    <button type="button" class="btn btn-primary btn-block" (click)="startStopwatch()">Start</button>
+    <button type="button" class="btn btn-success btn-block" (click)="onStartClicked()">Start</button>
   </div>
   <div *ngIf="stopwatchIsStarted" class="col">
-    <button type="button" class="btn btn-danger btn-block" (click)="stopStopwatch()">Stop</button>
+    <button type="button" class="btn btn-danger btn-block" (click)="onStopClicked()">Stop</button>
   </div>
-  <div class="col">
-    <button type="button" class="btn btn-success btn-block" (click)="clearStopwatch()">Clear</button>
+  <div *ngIf="!stopwatchIsStarted" class="col">
+    <button type="button" class="btn btn-primary btn-block" (click)="onResetClicked()">Reset</button>
+  </div>
+  <div *ngIf="stopwatchIsStarted" class="col">
+    <button type="button" class="btn btn-primary btn-block" (click)="onLapClicked()">Lap</button>
+  </div>
+</div>
+<div *ngFor="let lap of laps; let i = index" class="row">
+  <div class="col text-center">
+    <h1 class="stopwatch-time">Lap {{ i }} - {{ lap | formatAsStopwatchPipe}}</h1>
   </div>
 </div>

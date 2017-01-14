@@ -6,37 +6,49 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  timeInMillis: number = 0;
+  totalTime: number = 0;
+  intervalTime: number = 0;
   interval: any;
-  stopwatchIsStarted = false;
-  resetTime: boolean = true;
+  stopwatchIsStarted: boolean = false;
   startTime: number;
+  laps: Array<number> = [];
 
   constructor() {
   }
 
-  startStopwatch(): void {
+  $ngOnInit() {
+    this.resetValues();
+  }
+
+  resetValues(): void {
+    this.totalTime = 0;
+    this.laps = [];
+  }
+
+  onStartClicked(): void {
     console.log('Starting stopwatch');
     this.stopwatchIsStarted = true;
-    if (this.resetTime) {
-      this.startTime = new Date().getTime();
-    }
+    this.startTime = new Date().getTime();
     this.interval = setInterval(() => {
-      this.timeInMillis = new Date().getTime() - this.startTime;
+      this.totalTime = this.intervalTime + (new Date().getTime() - this.startTime);
     }, 100);
   }
 
-  stopStopwatch(): void {
+  onStopClicked(): void {
+    clearInterval(this.interval);
+    this.intervalTime += new Date().getTime() - this.startTime;
     console.log('Stopping stopwatch');
     this.stopwatchIsStarted = false;
-    this.resetTime = false;
-    clearInterval(this.interval);
   }
 
-  clearStopwatch(): void {
+  onResetClicked(): void {
     console.log('Clearing stopwatch');
-    this.stopStopwatch();
-    this.timeInMillis = 0;
-    this.resetTime = true;
+    this.onStopClicked();
+    this.resetValues();
+  }
+
+  onLapClicked(): void {
+    this.laps.push(this.totalTime);
+    console.log('Laps are: ', this.laps);
   }
 }
