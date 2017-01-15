@@ -8,6 +8,7 @@ import {Stopwatch} from './utils/stopwatch';
 })
 export class AppComponent {
   totalTime: number = 0;
+  totalTimeFontSize: number = 6;
   interval: any;
   stopwatchIsStarted: boolean = false;
   stopwatch: Stopwatch = new Stopwatch();
@@ -51,5 +52,15 @@ export class AppComponent {
   onLapClicked(): void {
     this.laps = this.stopwatch.lap();
     console.log('Laps are: ', this.laps);
+  }
+
+  onTotalTimeFontSizePlusClicked() {
+    this.totalTimeFontSize += 1;
+  }
+
+  onTotalTimeFontSizeMinusClicked() {
+    if (this.totalTimeFontSize > 1) {
+      this.totalTimeFontSize -= 1;
+    }
   }
 }

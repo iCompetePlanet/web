@@ -1,6 +1,19 @@
-<div class="row">
-  <div class="col text-center">
-    <h1 id="stopwatch-time" class="stopwatch-time">{{ totalTime | formatAsStopwatchPipe}}</h1>
+<div class="row text-center">
+  <div class="col-1">
+    <div class="row">
+      <div class="col">
+        <p class="text-center">Font Size</p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="btn-group-vertical">
+        <button type="button" class="btn btn-success btn-block" (click)="onTotalTimeFontSizePlusClicked()">+</button>
+        <button type="button" class="btn btn-danger btn-block" (click)="onTotalTimeFontSizeMinusClicked()">-</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-11 text-center">
+    <div id="stopwatch-time" class="stopwatch-time" [style.font-size.rem]="totalTimeFontSize">{{ totalTime | formatAsStopwatchPipe}}</div>
   </div>
 </div>
 <div class="row">
