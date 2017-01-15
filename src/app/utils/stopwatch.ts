@@ -2,7 +2,7 @@ export class Stopwatch {
   private totalTime: number;
   private intervalTime: number;
   private startTime: number;
-  private laps: Array<number>;
+  private laps: Array<any>;
 
   constructor() {
     this.resetValues();
@@ -21,7 +21,7 @@ export class Stopwatch {
   }
 
   lap(): Array<number> {
-    this.laps.push(this.getTime());
+    this.laps.unshift({num: (this.laps.length + 1), time: this.getTime()});
     return this.laps;
   }
 

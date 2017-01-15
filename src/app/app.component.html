@@ -17,8 +17,8 @@
     <button type="button" class="btn btn-primary btn-block" (click)="onLapClicked()">Lap</button>
   </div>
 </div>
-<div *ngFor="let lap of laps; let i = index" class="row">
+<div *ngFor="let lap of laps" class="row">
   <div class="col text-center">
-    <h1 class="stopwatch-time">Lap {{ i }} - {{ lap | formatAsStopwatchPipe}}</h1>
+    <h1 class="stopwatch-time">Lap {{ lap.num }} - {{ lap.time | formatAsStopwatchPipe}}</h1>
   </div>
 </div>
