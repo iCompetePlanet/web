@@ -1,18 +1,5 @@
 <div class="row text-center">
-  <div class="col-1">
-    <div class="row">
-      <div class="col">
-        <p class="text-center">Font Size</p>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="btn-group-vertical">
-        <button type="button" class="btn btn-success btn-block" (click)="onTotalTimeFontSizePlusClicked()">+</button>
-        <button type="button" class="btn btn-danger btn-block" (click)="onTotalTimeFontSizeMinusClicked()">-</button>
-      </div>
-    </div>
-  </div>
-  <div class="col-11 text-center">
+  <div class="col text-center">
     <div id="stopwatch-time" class="stopwatch-time" [style.font-size.rem]="totalTimeFontSize">{{ totalTime | formatAsStopwatchPipe}}</div>
   </div>
 </div>
@@ -35,3 +22,12 @@
     <h1 class="stopwatch-time">Lap {{ lap.num }} - {{ lap.time | formatAsStopwatchPipe}}</h1>
   </div>
 </div>
+<form class="card options-form">
+  <div class="form-group">
+    <label for="fontSize">Font Size:</label>
+    <div id="fontSize" class="btn-group" role="group" aria-label="Font Size">
+      <button type="button" class="btn btn-secondary" (click)="onTotalTimeFontSizePlusClicked()">+</button>
+      <button type="button" class="btn btn-secondary" (click)="onTotalTimeFontSizeMinusClicked()">-</button>
+    </div>
+  </div>
+</form>
