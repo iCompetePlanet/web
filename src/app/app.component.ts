@@ -8,7 +8,7 @@ import {Stopwatch} from './utils/stopwatch';
 })
 export class AppComponent {
   totalTime: number = 0;
-  totalTimeFontSize: number = 6;
+  totalTimeFontSize: number = 4;
   interval: any;
   stopwatchIsStarted: boolean = false;
   stopwatch: Stopwatch = new Stopwatch();
