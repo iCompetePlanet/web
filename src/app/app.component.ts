@@ -1,24 +1,29 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Stopwatch} from './utils/stopwatch';
+import {UserPreferencesService} from "./services/user-preferences.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [UserPreferencesService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  private static readonly FONT_PREF_KEY: string = 'stopwatchFontSize';
+
   totalTime: number = 0;
-  totalTimeFontSize: number = 4;
+  stopwatchFontSize: number = 4;
   interval: any;
   stopwatchIsStarted: boolean = false;
   stopwatch: Stopwatch = new Stopwatch();
   laps: Array<any>;
 
-  constructor() {
+  constructor(private userPrefsService: UserPreferencesService) {
   }
 
-  $ngOnInit() {
+  ngOnInit() {
     this.resetValues();
+    this.stopwatchFontSize = this.userPrefsService.getPref(AppComponent.FONT_PREF_KEY) || 4;
   }
 
   resetValues(): void {
@@ -55,12 +60,14 @@ export class AppComponent {
   }
 
   onTotalTimeFontSizePlusClicked() {
-    this.totalTimeFontSize += 1;
+    this.stopwatchFontSize += 1;
+    this.userPrefsService.setPref(AppComponent.FONT_PREF_KEY, this.stopwatchFontSize);
   }
 
   onTotalTimeFontSizeMinusClicked() {
-    if (this.totalTimeFontSize > 1) {
-      this.totalTimeFontSize -= 1;
+    if (this.stopwatchFontSize > 1) {
+      this.stopwatchFontSize -= 1;
+      this.userPrefsService.setPref(AppComponent.FONT_PREF_KEY, this.stopwatchFontSize);
     }
   }
 }

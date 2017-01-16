@@ -22,6 +22,7 @@
         "../node_modules/bootstrap/dist/css/bootstrap.css"
       ],
       "scripts": [
+        "../node_modules/js-cookie/src/js.cookie.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
