@@ -17,11 +17,22 @@
     <button type="button" class="btn btn-primary btn-block" (click)="onLapClicked()">Lap</button>
   </div>
 </div>
-<div *ngFor="let lap of laps" class="row">
-  <div class="col text-center">
-    <h1 class="stopwatch-time">Lap {{ lap.num }} - {{ lap.time | formatAsStopwatchPipe}}</h1>
-  </div>
-</div>
+<table *ngIf="laps && laps.length > 0" class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Lap #</th>
+    <th>Lap Time</th>
+    <th>Total Time</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let lap of laps">
+    <th scope="row">{{ lap.num }}</th>
+    <td>{{ lap.lapTime | formatAsStopwatchPipe}}</td>
+    <td>{{ lap.totalTime | formatAsStopwatchPipe}}</td>
+  </tr>
+  </tbody>
+</table>
 <form class="card options-form">
   <div class="form-group">
     <label for="fontSize">Font Size:</label>

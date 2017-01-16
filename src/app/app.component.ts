@@ -12,7 +12,7 @@ export class AppComponent {
   interval: any;
   stopwatchIsStarted: boolean = false;
   stopwatch: Stopwatch = new Stopwatch();
-  laps: Array<number>;
+  laps: Array<any>;
 
   constructor() {
   }

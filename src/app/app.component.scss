@@ -3,5 +3,9 @@
 }
 .options-form {
   padding: 1rem;
-  margin-top: 1rem;
+}
+.row {
+  @extend .row;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
