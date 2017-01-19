@@ -13,7 +13,7 @@ export class UserPreferencesService {
     const prefs = this.getPreferences();
     prefs[pref] = value;
     console.log('Setting preferences: ', prefs);
-    localStorage.setItem(UserPreferencesService.PREFS_KEY, JSON.stringify(prefs))
+    localStorage.setItem(UserPreferencesService.PREFS_KEY, JSON.stringify(prefs));
   }
 
   private getPreferences(): any {
