@@ -1,11 +1,8 @@
 import {Injectable} from '@angular/core';
 
-declare var Cookies: any;
-
 @Injectable()
 export class UserPreferencesService {
   private static readonly PREFS_KEY: string = 'user-preferences';
-  cookies: any = Cookies; // Cookies is a global scope object
 
   getPref(pref: string): any {
     console.log('Preferences is: ', this.getPreferences());
@@ -16,10 +13,11 @@ export class UserPreferencesService {
     const prefs = this.getPreferences();
     prefs[pref] = value;
     console.log('Setting preferences: ', prefs);
-    this.cookies.set(UserPreferencesService.PREFS_KEY, prefs, { expires: 30 });
+    localStorage.setItem(UserPreferencesService.PREFS_KEY, JSON.stringify(prefs))
   }
 
   private getPreferences(): any {
-    return this.cookies.getJSON(UserPreferencesService.PREFS_KEY) || {};
+    const prefs = localStorage.getItem(UserPreferencesService.PREFS_KEY);
+    return prefs ? JSON.parse(prefs) : {};
   }
 }
