@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { FormatAsStopwatchPipePipe } from './pipes/format-as-stopwatch-pipe.pipe';
+import { StopwatchComponent } from './stopwatch/stopwatch.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormatAsStopwatchPipePipe
+    FormatAsStopwatchPipePipe,
+    StopwatchComponent
   ],
   imports: [
     BrowserModule,
